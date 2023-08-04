@@ -1,0 +1,29 @@
+{
+  "plugins": {
+    "@release-it/bumper": {
+      "in": "libs/product/version.json",
+      "out": [
+        "packages/ngx-bang/version.json",
+        "dist/packages/ngx-bang/package.json"
+      ]
+    }
+  },
+  "git": {
+    "commitMessage": "chore(repo): release ngx-bang ${version}",
+    "tagName": "ngx-bang-v${version}"
+  },
+  "npm": {
+    "publish": false
+  },
+  "github": {
+    "release": true,
+    "releaseName": "Release: ngx-bang ${version}"
+  },
+  "hooks": {
+    "before:bump": "pnpm exec nx build ngx-bang",
+    "after:bump": [
+      "git checkout -- package.json",
+      "git checkout -- package-lock.json"
+    ]
+  }
+}

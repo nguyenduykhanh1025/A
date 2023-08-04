@@ -1,0 +1,26 @@
+{
+  "name": "product",
+  "version": "0.0.0-replace",
+  "license": "MIT",
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nguyenduykhanh1025/A.git",
+    "directory": "libs/product"
+  },
+  "author": {
+    "name": "khanhnd",
+    "email": "nguyenduykhanh1025@gmail.com"
+  },
+  "description": "product",
+  "keywords": [
+    "typescript",
+    "ngx-bang",
+    "angular",
+    "state management",
+    "proxy"
+  ]
+}
