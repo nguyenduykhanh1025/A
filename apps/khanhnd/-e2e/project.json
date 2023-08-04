@@ -1,0 +1,33 @@
+{
+  "name": "khanhnd\\-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/khanhnd/-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/khanhnd/-e2e/cypress.config.ts",
+        "devServerTarget": "khanhnd\\:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "khanhnd\\:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "khanhnd\\:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/khanhnd/-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["khanhnd\\"]
+}
