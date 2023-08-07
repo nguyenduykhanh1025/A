@@ -10,12 +10,10 @@
   },
   "git": {
     "commitMessage": "chore(repo): release product ${version}",
-    "requireCleanWorkingDir": false,
-    "requireUpstream": true,
     "tagName": "product-v${version}"
   },
   "npm": {
-    "publish": false
+    "publish": true
   },
   "github": {
     "release": true,
