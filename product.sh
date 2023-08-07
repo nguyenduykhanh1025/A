@@ -1,6 +1,11 @@
-git checkout -b product-new-version
-git remote set-url origin "git@github.com:nguyenduykhanh1025/A.git"
-git pull origin master
-git fetch --tags
-npm install
-npx nx release product
+PUBLISHABLES_LIBS='product'
+LIB_NAME=$(npx nx print-affected --type=lib --select=projects --plain)
+if [[ " ${PUBLISHABLES_LIBS} " == *" $LIB_NAME "* ]]; then
+  npx nx release product
+  exit 1
+else
+  printf "ko co"
+  exit 1
+fi
+
+
