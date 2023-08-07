@@ -10,8 +10,7 @@
   },
   "git": {
     "commitMessage": "chore(repo): release product ${version}",
-    "tagName": "product-v${version}",
-    "pushRepo": "git@github.com:nguyenduykhanh1025/A.git/new-product"
+    "tagName": "product-v${version}"
   },
   "npm": {
     "publish": false
