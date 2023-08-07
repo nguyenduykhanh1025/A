@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@khanhnd/common-ui": ["libs/common-ui/src/index.ts"],
+      "@khanhnd/product": ["libs/product/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
