@@ -12,7 +12,7 @@
     "commitMessage": "chore(repo): release product ${version}",
     "tagName": "ngx-bang-v${version}",
     "requireCleanWorkingDir": false,
-    "pushRepo": "https://github.com/nguyenduykhanh1025/A/khanhnd"
+    "requireUpstream": false
   },
   "npm": {
     "publish": false
