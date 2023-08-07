@@ -8,7 +8,7 @@ if [[ " ${PUBLISHABLES_LIBS} " == *" $LIB_NAME "* ]]; then
   echo "Create fresh update branch..."
   git checkout -q -b "feature/auto-update-product-version"
 
-  git push --set-upstream "feature/auto-update-product-version"
+  git push --set-upstream origin "feature/auto-update-product-version"
   npx nx release product
   exit 1
 else
