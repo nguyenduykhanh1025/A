@@ -3,7 +3,7 @@
     "@release-it/bumper": {
       "in": "libs/product/version.json",
       "out": [
-        "libs/product/version.json",
+        "versions/product-lib.json",
         "dist/libs/product/package.json"
       ]
     }
