@@ -2,12 +2,13 @@ PUBLISHABLES_LIBS='product'
 LIB_NAME=$(npx nx print-affected --type=lib --select=projects --plain)
 if [[ " ${PUBLISHABLES_LIBS} " == *" $LIB_NAME "* ]]; then
   echo "Delete old dependencies update branch..."
-  git push origin --delete "feature/auto-update-dependencies" || true
-  git branch -D "feature/auto-update-dependencies" || true
+  git push origin --delete "feature/auto-update-product-version" || true
+  git branch -D "feature/auto-update-product-version" || true
 
   echo "Create fresh update branch..."
-  git checkout -q -b "feature/auto-update-dependencies"
+  git checkout -q -b "feature/auto-update-product-version"
 
+  git push --set-upstream "feature/auto-update-product-version"
   npx nx release product
   exit 1
 else
