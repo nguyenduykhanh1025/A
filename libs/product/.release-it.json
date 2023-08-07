@@ -11,7 +11,7 @@
   "git": {
     "commitMessage": "chore(repo): release product ${version}",
     "tagName": "product-v${version}",
-    "pushRepo": "new-version-of-product"
+    "pushRepo": "git@github.com:nguyenduykhanh1025/A.git"
   },
   "npm": {
     "publish": false
