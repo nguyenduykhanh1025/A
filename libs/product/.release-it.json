@@ -1,7 +1,7 @@
 {
   "plugins": {
     "@release-it/bumper": {
-      "in": "libs/product/version.json",
+      "in": "versions/product-lib.json",
       "out": [
         "versions/product-lib.json",
         "dist/libs/product/package.json"
