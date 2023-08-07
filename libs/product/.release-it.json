@@ -11,7 +11,7 @@
   "git": {
     "commitMessage": "chore(repo): release product ${version}",
     "requireCleanWorkingDir": false,
-    "requireUpstream": false
+    "requireUpstream": true
   },
   "npm": {
     "publish": false
