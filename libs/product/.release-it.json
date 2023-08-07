@@ -3,27 +3,26 @@
     "@release-it/bumper": {
       "in": "libs/product/version.json",
       "out": [
-        "packages/ngx-bang/version.json",
-        "dist/packages/ngx-bang/package.json"
+        "libs/product/version.json",
+        "dist/libs/product/package.json"
       ]
     }
   },
   "git": {
-    "commitMessage": "chore(repo): release ngx-bang ${version}",
-    "tagName": "ngx-bang-v${version}"
+    "commitMessage": "chore(repo): release product ${version}",
+    "tagName": "ngx-bang-v${version}",
+    "requireCleanWorkingDir": false,
+    "pushRepo": "https://github.com/nguyenduykhanh1025/A/khanhnd"
   },
   "npm": {
     "publish": false
   },
   "github": {
     "release": true,
-    "releaseName": "Release: ngx-bang ${version}"
+    "releaseName": "Release: ngx-bang ${version}",
+    "tokenRef": "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"
   },
   "hooks": {
-    "before:bump": "pnpm exec nx build ngx-bang",
-    "after:bump": [
-      "git checkout -- package.json",
-      "git checkout -- package-lock.json"
-    ]
+    "before:bump": "npx nx build product"
   }
 }
