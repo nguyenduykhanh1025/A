@@ -32,6 +32,22 @@
       "options": {
         "command": "dotenv release-it -- --config=./libs/product/.release-it.json --ci"
       }
+    },
+    "build": {
+      "configurations": {
+        "development": {
+          "tsConfig": "libs/product/tsconfig.lib.json"
+        },
+        "production": {
+          "tsConfig": "libs/product/tsconfig.lib.prod.json"
+        }
+      },
+      "defaultConfiguration": "production",
+      "executor": "@nrwl/angular:package",
+      "options": {
+        "project": "libs/product/ng-package.json"
+      },
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"]
     }
   }
 }
