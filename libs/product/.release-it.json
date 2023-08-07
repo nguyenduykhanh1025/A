@@ -10,7 +10,6 @@
   },
   "git": {
     "commitMessage": "chore(repo): release product ${version}",
-    "tagName": "ngx-bang-v${version}",
     "requireCleanWorkingDir": false,
     "requireUpstream": false
   },
