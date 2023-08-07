@@ -10,7 +10,6 @@
   },
   "git": {
     "commitMessage": "chore(repo): release product ${version}",
-    "tagName": "ngx-bang-v${version}",
     "requireCleanWorkingDir": false,
     "requireUpstream": false
   },
@@ -23,6 +22,10 @@
     "tokenRef": "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"
   },
   "hooks": {
-    "before:bump": "npx nx build product"
+    "before:bump": "npx nx build product",
+    "after:bump": [
+      "git checkout -- package.json",
+      "git checkout -- package-lock.json"
+    ]
   }
 }
