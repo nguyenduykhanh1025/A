@@ -30,7 +30,7 @@
     "release": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "dotenv release-it premajor --prereleaseId=SNAPSHOT  --npm.tag=\"x.x.x-SNAPSHOT\" -- --config=./libs/product/.release-it.json --ci"
+        "command": "dotenv release-it prerelease --prereleaseId=\"SNAPSHOT\" -- --config=./libs/product/.release-it.json --ci"
       }
     },
     "build": {
