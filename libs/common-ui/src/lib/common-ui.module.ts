@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-console.log('something');
+console.log('something 123');
 
 @NgModule({
   imports: [CommonModule],
