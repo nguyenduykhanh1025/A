@@ -1,5 +1,6 @@
-PUBLISHABLES_LIBS=('product' 'common-ui')
+PUBLISHABLES_LIBS=('product' 'common-ui,')
 LIB_NAME=$(npx nx print-affected --type=lib --select=projects --plain)
+echo $LIB_NAME
 for PUBLISHABLES_LIB in ${PUBLISHABLES_LIBS[@]}
 do
   echo $PUBLISHABLES_LIB
@@ -13,9 +14,7 @@ do
 
     git push --set-upstream origin "feature/auto-update-$PUBLISHABLES_LIB-version"
     npx nx release $PUBLISHABLES_LIB
-    exit 1
   else
     printf "ko co"
-    exit 1
   fi
 done
