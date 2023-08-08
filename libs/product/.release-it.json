@@ -17,8 +17,7 @@
   },
   "github": {
     "release": true,
-    "releaseName": "Release: common-ui ${version}",
-    "tokenRef": "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"
+    "releaseName": "Release: common-ui ${version}"
   },
   "hooks": {
     "before:bump": "npx nx build product",
