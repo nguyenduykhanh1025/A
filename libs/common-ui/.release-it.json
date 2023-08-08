@@ -1,0 +1,30 @@
+{
+  "plugins": {
+    "@release-it/bumper": {
+      "in": "versions/common-ui-lib.json",
+      "out": [
+        "versions/common-ui-lib.json",
+        "dist/libs/common-ui/package.json"
+      ]
+    }
+  },
+  "git": {
+    "commitMessage": "chore(repo): release common-ui ${version}",
+    "tagName": "common-ui-version${version}"
+  },
+  "npm": {
+    "publish": false
+  },
+  "github": {
+    "release": true,
+    "releaseName": "Release: ngx-bang ${version}",
+    "tokenRef": "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"
+  },
+  "hooks": {
+    "before:bump": "npx nx build common-ui",
+    "after:bump": [
+      "git checkout -- package.json",
+      "git checkout -- package-lock.json"
+    ]
+  }
+}
