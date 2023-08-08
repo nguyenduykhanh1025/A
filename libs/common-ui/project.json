@@ -29,6 +29,12 @@
           "libs/common-ui/**/*.html"
         ]
       }
+    },
+    "release": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "dotenv release-it -- --config=./libs/common-ui/.release-it.json --ci"
+      }
     }
   }
 }
