@@ -2,7 +2,7 @@ PUBLISHABLES_LIBS=('product')
 LIB_NAME=$(npx nx print-affected --type=lib --select=projects --plain)
 for PUBLISHABLES_LIB in $PUBLISHABLES_LIBS
 do
-  echo $PUBLISHABLES_LIB
+  echo $LIB_NAME
   if [[ " ${PUBLISHABLES_LIB} " == *" $LIB_NAME "* ]]; then
     echo "Delete old dependencies update branch..."
     git push origin --delete "feature/auto-update-product-version" || true
