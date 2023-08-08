@@ -13,9 +13,7 @@ do
 
     git push --set-upstream origin "feature/auto-update-$PUBLISHABLES_LIB-version"
     npx nx release $PUBLISHABLES_LIB
-    exit 1
   else
     printf "ko co"
-    exit 1
   fi
 done
