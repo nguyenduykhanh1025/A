@@ -15,10 +15,6 @@
   "npm": {
     "publish": false
   },
-  "github": {
-    "release": true,
-    "releaseName": "Release: common-ui ${version}"
-  },
   "hooks": {
     "before:bump": "npx nx build product",
     "after:bump": [
