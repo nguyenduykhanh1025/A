@@ -10,14 +10,14 @@
   },
   "git": {
     "commitMessage": "chore(repo): release product ${version}",
-    "tagName": "product-version${version}"
+    "tagName": "product-v${version}"
   },
   "npm": {
     "publish": false
   },
   "github": {
     "release": true,
-    "releaseName": "Release: ngx-bang ${version}",
+    "releaseName": "Release: common-ui ${version}",
     "tokenRef": "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"
   },
   "hooks": {
