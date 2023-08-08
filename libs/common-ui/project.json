@@ -35,6 +35,22 @@
       "options": {
         "command": "dotenv release-it -- --config=./libs/common-ui/.release-it.json --ci"
       }
+    },
+    "build": {
+      "configurations": {
+        "development": {
+          "tsConfig": "libs/common-ui/tsconfig.lib.json"
+        },
+        "production": {
+          "tsConfig": "libs/common-ui/tsconfig.lib.prod.json"
+        }
+      },
+      "defaultConfiguration": "production",
+      "executor": "@nrwl/angular:package",
+      "options": {
+        "project": "libs/common-ui/ng-package.json"
+      },
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"]
     }
   }
 }
