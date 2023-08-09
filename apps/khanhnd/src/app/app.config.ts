@@ -9,4 +9,4 @@ export const appConfig: ApplicationConfig = {
   providers: [provideRouter(appRoutes, withEnabledBlockingInitialNavigation())],
 };
 
-console.log('asdasd');
+console.log('asdasd 1236545');
