@@ -1,20 +1,22 @@
-PUBLISHABLES_LIBS=('product' 'common-ui')
-LIB_NAME=$(npx nx print-affected --type=lib --select=projects --plain)
-for PUBLISHABLES_LIB in ${PUBLISHABLES_LIBS[@]}
-do
-  if [[ "$LIB_NAME" == *"$PUBLISHABLES_LIB"* ]]; then
-    git checkout main
+$MASTER_BASE='main'
+$LIB_NAME='product'
+AFFECTED_LIBS=$(npx nx print-affected --type=lib --select=projects --base=$MASTER_BASE --head=HEAD --plain)
 
-    echo "Delete old dependencies update branch..."
-    git push origin --delete "feature/auto-update-$PUBLISHABLES_LIB-version" || true
-    git branch -D "feature/auto-update-$PUBLISHABLES_LIB-version" || true
+if [[ "$AFFECTED_LIBS" == *"$LIB_NAME"* ]]; then
+  echo "Checkout to $MASTER_BASE before creating a new branch for changing the version of $LIB_NAME"
+  git checkout $MASTER_BASE
 
-    echo "Create fresh update branch..."
-    git checkout -q -b "feature/auto-update-$PUBLISHABLES_LIB-version"
+  echo "Delete old dependencies update branch..."
+  git push origin --delete "feature/auto-update-$LIB_NAME-version" || true
+  git branch -D "feature/auto-update-$LIB_NAME-version" || true
 
-    git push --set-upstream origin "feature/auto-update-$PUBLISHABLES_LIB-version"
-    npx nx release $PUBLISHABLES_LIB
+  echo "Create fresh update branch..."
+  git checkout -q -b "feature/auto-update-$LIB_NAME-version"
 
-    ./scripts/build-and-publish-lib.sh $PUBLISHABLES_LIB --dry-run
-  fi
-done
+  git push --set-upstream origin "feature/auto-update-$LIB_NAME-version"
+  npx nx release $LIB_NAME
+
+  echo "Start to publish $LIB_NAME library to npm"
+  ./scripts/build-and-publish-lib.sh $LIB_NAME --dry-run
+
+echo -e "✅ Done. ✅️"
