@@ -8,3 +8,5 @@ import { appRoutes } from './app.routes';
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(appRoutes, withEnabledBlockingInitialNavigation())],
 };
+
+console.log('asdasd');
