@@ -2,8 +2,9 @@ PUBLISHABLES_LIBS=('product' 'common-ui')
 LIB_NAME=$(npx nx print-affected --type=lib --select=projects --plain)
 for PUBLISHABLES_LIB in ${PUBLISHABLES_LIBS[@]}
 do
-  echo $PUBLISHABLES_LIB
   if [[ "$LIB_NAME" == *"$PUBLISHABLES_LIB"* ]]; then
+    git checkout main
+
     echo "Delete old dependencies update branch..."
     git push origin --delete "feature/auto-update-$PUBLISHABLES_LIB-version" || true
     git branch -D "feature/auto-update-$PUBLISHABLES_LIB-version" || true
@@ -13,7 +14,7 @@ do
 
     git push --set-upstream origin "feature/auto-update-$PUBLISHABLES_LIB-version"
     npx nx release $PUBLISHABLES_LIB
-  else
-    printf "ko co"
+
+    ./scripts/build-and-publish-lib.sh $PUBLISHABLES_LIB --dry-run
   fi
 done

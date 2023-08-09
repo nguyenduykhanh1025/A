@@ -10,15 +10,11 @@
   },
   "git": {
     "commitMessage": "chore(repo): release product ${version}",
-    "tagName": "product-v${version}"
+    "tagName": "product-v${version}",
+    "requireCleanWorkingDir": false
   },
   "npm": {
     "publish": false
-  },
-  "github": {
-    "release": true,
-    "releaseName": "Release: common-ui ${version}",
-    "tokenRef": "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"
   },
   "hooks": {
     "before:bump": "npx nx build product",
