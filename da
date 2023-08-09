@@ -1,0 +1,49 @@
+[33mcommit 42880e51ed43ae874b041e44dd3cb25e38121e62[m[33m ([m[1;36mHEAD -> [m[1;32mkhanhnd[m[33m)[m
+Author: Nguyen Duy Khanh <u.khanhduy.nguyen@ext.ewerk.com>
+Date:   Wed Aug 9 15:01:05 2023 +0700
+
+    change script
+
+[1mdiff --git a/product.sh b/product.sh[m
+[1mindex e107ad0..dda4da1 100644[m
+[1m--- a/product.sh[m
+[1m+++ b/product.sh[m
+[36m@@ -1,20 +1,22 @@[m
+[31m-PUBLISHABLES_LIBS=('product' 'common-ui')[m
+[31m-LIB_NAME=$(npx nx print-affected --type=lib --select=projects --plain)[m
+[31m-for PUBLISHABLES_LIB in ${PUBLISHABLES_LIBS[@]}[m
+[31m-do[m
+[31m-  if [[ "$LIB_NAME" == *"$PUBLISHABLES_LIB"* ]]; then[m
+[31m-    git checkout main[m
+[32m+[m[32m$MASTER_BASE='main'[m
+[32m+[m[32m$LIB_NAME='product'[m
+[32m+[m[32mAFFECTED_LIBS=$(npx nx print-affected --type=lib --select=projects --base=$MASTER_BASE --head=HEAD --plain)[m
+ [m
+[31m-    echo "Delete old dependencies update branch..."[m
+[31m-    git push origin --delete "feature/auto-update-$PUBLISHABLES_LIB-version" || true[m
+[31m-    git branch -D "feature/auto-update-$PUBLISHABLES_LIB-version" || true[m
+[32m+[m[32mif [[ "$AFFECTED_LIBS" == *"$LIB_NAME"* ]]; then[m
+[32m+[m[32m  echo "Checkout to $MASTER_BASE before creating a new branch for changing the version of $LIB_NAME"[m
+[32m+[m[32m  git checkout $MASTER_BASE[m
+ [m
+[31m-    echo "Create fresh update branch..."[m
+[31m-    git checkout -q -b "feature/auto-update-$PUBLISHABLES_LIB-version"[m
+[32m+[m[32m  echo "Delete old dependencies update branch..."[m
+[32m+[m[32m  git push origin --delete "feature/auto-update-$LIB_NAME-version" || true[m
+[32m+[m[32m  git branch -D "feature/auto-update-$LIB_NAME-version" || true[m
+ [m
+[31m-    git push --set-upstream origin "feature/auto-update-$PUBLISHABLES_LIB-version"[m
+[31m-    npx nx release $PUBLISHABLES_LIB[m
+[32m+[m[32m  echo "Create fresh update branch..."[m
+[32m+[m[32m  git checkout -q -b "feature/auto-update-$LIB_NAME-version"[m
+ [m
+[31m-    ./scripts/build-and-publish-lib.sh $PUBLISHABLES_LIB --dry-run[m
+[31m-  fi[m
+[31m-done[m
+[32m+[m[32m  git push --set-upstream origin "feature/auto-update-$LIB_NAME-version"[m
+[32m+[m[32m  npx nx release $LIB_NAME[m
+[32m+[m
+[32m+[m[32m  echo "Start to publish $LIB_NAME library to npm"[m
+[32m+[m[32m  ./scripts/build-and-publish-lib.sh $LIB_NAME --dry-run[m
+[32m+[m
+[32m+[m[32mecho -e "✅ Done. ✅️"[m

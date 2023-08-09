@@ -1,7 +1,8 @@
-$MASTER_BASE='main'
-$LIB_NAME='product'
+MASTER_BASE='main'
+LIB_NAME='product'
 AFFECTED_LIBS=$(npx nx print-affected --type=lib --select=projects --base=$MASTER_BASE --head=HEAD --plain)
-
+echo $AFFECTED_LIBS;
+echo "alo"
 if [[ "$AFFECTED_LIBS" == *"$LIB_NAME"* ]]; then
   echo "Checkout to $MASTER_BASE before creating a new branch for changing the version of $LIB_NAME"
   git checkout $MASTER_BASE
@@ -18,5 +19,5 @@ if [[ "$AFFECTED_LIBS" == *"$LIB_NAME"* ]]; then
 
   echo "Start to publish $LIB_NAME library to npm"
   ./scripts/build-and-publish-lib.sh $LIB_NAME --dry-run
-
+fi
 echo -e "✅ Done. ✅️"
