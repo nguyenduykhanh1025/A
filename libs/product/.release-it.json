@@ -10,7 +10,7 @@
   },
   "git": {
     "commitMessage": "chore(repo): release product ${version}",
-    "tagName": "product-v${version}",
+    "tagName": "date “+%d%b%Y%H%M%S”",
     "requireCleanWorkingDir": false
   },
   "npm": {
