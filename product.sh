@@ -1,8 +1,10 @@
 MASTER_BASE='main'
 LIB_NAME='product'
 AFFECTED_LIBS=$(npx nx print-affected --type=lib --select=projects --base=$MASTER_BASE --head=HEAD --plain)
-echo $AFFECTED_LIBS;
-echo "alo"
+GIT_BRANCH_CURRENT=$(git rev-parse --abbrev-ref HEAD)
+git checkout $GIT_BRANCH_CURRENT
+echo 'pllllllllll'
+
 if [[ "$AFFECTED_LIBS" == *"$LIB_NAME"* ]]; then
   echo "Checkout to $MASTER_BASE before creating a new branch for changing the version of $LIB_NAME"
   git checkout $MASTER_BASE
