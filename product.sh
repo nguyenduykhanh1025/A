@@ -1,8 +1,9 @@
 MASTER_BASE='main'
 LIB_NAME='product'
 AFFECTED_LIBS=$(npx nx print-affected --type=lib --select=projects --base=$MASTER_BASE --head=HEAD --plain)
-GIT_BRANCH_CURRENT=$(git rev-parse --abbrev-ref HEAD)
+GIT_BRANCH_CURRENT='main'
 git checkout $GIT_BRANCH_CURRENT
+
 echo 'pllllllllll'
 
 if [[ "$AFFECTED_LIBS" == *"$LIB_NAME"* ]]; then
