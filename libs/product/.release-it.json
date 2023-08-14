@@ -9,7 +9,7 @@
     }
   },
   "git": {
-    "commitMessage": "chore(repo): release product ${version}",
+    "commitMessage": "chore(repo): release product ${version} 1",
     "tagName": "product-v${version}",
     "requireCleanWorkingDir": false
   },
