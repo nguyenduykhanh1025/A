@@ -1,9 +1,8 @@
 {
   "plugins": {
     "@csmith/release-it-calver-plugin": {
-      "format": "yy.mm.minor",
-      "increment": "calendar",
-      "fallbackIncrement": "minor"
+      "format": "minor.yyyy.mm",
+      "increment": "calendar.minor"
     },
     "@release-it/bumper": {
       "in": "versions/product-lib.json",
@@ -14,7 +13,7 @@
     }
   },
   "git": {
-    "commitMessage": "chore(repo): release product ${version} 1",
+    "commitMessage": "chore(repo): release product ${version} ${test}",
     "tagName": "product-v${version}",
     "requireCleanWorkingDir": false
   },
