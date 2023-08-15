@@ -1,8 +1,9 @@
 {
   "plugins": {
     "@csmith/release-it-calver-plugin": {
-      "format": "yyyy.mm.minor",
-      "increment": "calendar"
+      "format": "yy.mm.minor",
+      "increment": "calendar",
+      "fallbackIncrement": "minor"
     },
     "@release-it/bumper": {
       "in": "versions/product-lib.json",
