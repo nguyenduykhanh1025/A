@@ -3,14 +3,12 @@ LIB_NAME='product'
 AFFECTED_LIBS=$(npx nx print-affected --type=lib --select=projects --base=$MASTER_BASE --head=HEAD --plain)
 GIT_BRANCH_CURRENT_REALLY=$(git rev-parse --abbrev-ref HEAD)
 timestamp=$(date +%s)
-GIT_BRANCH_CURRENT='main'
-git checkout $GIT_BRANCH_CURRENT
 
 echo 'pllllllllll'
 
 if [[ "$AFFECTED_LIBS" == *"$LIB_NAME"* ]]; then
-  echo "Checkout to $MASTER_BASE before creating a new branch for changing the version of $LIB_NAME"
-  git checkout $MASTER_BASE
+  # echo "Checkout to $MASTER_BASE before creating a new branch for changing the version of $LIB_NAME"
+  # git checkout $MASTER_BASE
 
   echo "Delete old dependencies update branch..."
   git push origin --delete "feature/auto-update-$LIB_NAME-version" || true
