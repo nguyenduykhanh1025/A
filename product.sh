@@ -5,6 +5,7 @@ timestamp=$(date +%s)
 GIT_BRANCH_CURRENT_NAME=$(git rev-parse --abbrev-ref HEAD | cut -d'/' -f 2)
 GIT_BRANCH_CURRENT_TYPE=$(git rev-parse --abbrev-ref HEAD | cut -d'/' -f 1)
 INCREMENT_TAG=minor
+GIT_BRANCH_CURRENT_TYPE_FEATURE=bugfix
 
 if [[ "$AFFECTED_LIBS" == *"$LIB_NAME"* ]]; then
   # echo "Checkout to $MASTER_BASE before creating a new branch for changing the version of $LIB_NAME"
@@ -18,7 +19,7 @@ if [[ "$AFFECTED_LIBS" == *"$LIB_NAME"* ]]; then
   git checkout -q -b "bugfix/auto-update-$LIB_NAME-version"
 
   git push --set-upstream origin "bugfix/auto-update-$LIB_NAME-version"
-  if [["$GIT_BRANCH_CURRENT_TYPE" == "feature"]]
+  if [["$GIT_BRANCH_CURRENT_TYPE" == "$GIT_BRANCH_CURRENT_TYPE_FEATURE"]]
   then
     INCREMENT_TAG="minor"
   else
