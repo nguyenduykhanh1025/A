@@ -1,5 +1,7 @@
 PUBLISHABLES_LIBS=('product' 'common-ui')
 LIB_NAME=$(npx nx print-affected --type=lib --select=projects --plain)
+echo "major.minor.patch"
+
 for PUBLISHABLES_LIB in ${PUBLISHABLES_LIBS[@]}
 do
   if [[ "$LIB_NAME" == *"$PUBLISHABLES_LIB"* ]]; then
