@@ -16,7 +16,8 @@ if [[ "$AFFECTED_LIBS" == *"$LIB_NAME"* ]]; then
   git checkout -q -b "feature/auto-update-$LIB_NAME-version"
 
   git push --set-upstream origin "feature/auto-update-$LIB_NAME-version"
-  npx nx release $LIB_NAME --increment=minor --preRelease="$GIT_BRANCH_CURRENT_REALLY.$timestamp"
+  # --increment=minor
+  npx nx release $LIB_NAME --preRelease="$GIT_BRANCH_CURRENT_REALLY.$timestamp"
 
   echo "Start to publish $LIB_NAME library to npm"
   ./scripts/build-and-publish-lib.sh $LIB_NAME --dry-run
