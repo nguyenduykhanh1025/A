@@ -19,7 +19,7 @@ if [[ "$AFFECTED_LIBS" == *"$LIB_NAME"* ]]; then
   git checkout -q -b "bugfix/auto-update-$LIB_NAME-version"
 
   git push --set-upstream origin "bugfix/auto-update-$LIB_NAME-version"
-  if [["$GIT_BRANCH_CURRENT_TYPE" == "$GIT_BRANCH_CURRENT_TYPE_FEATURE"]]
+  if [[ "$GIT_BRANCH_CURRENT_TYPE" == "$GIT_BRANCH_CURRENT_TYPE_FEATURE" ]]
   then
     INCREMENT_TAG="minor"
   else
@@ -28,7 +28,7 @@ if [[ "$AFFECTED_LIBS" == *"$LIB_NAME"* ]]; then
   # --increment=minor
   echo $INCREMENT_TAG
 
-  npx nx release $LIB_NAME --increment=$INCREMENT_TAG --preRelease="$GIT_BRANCH_CURRENT_NAME.$timestamp"
+  npx nx release $LIB_NAME --increment=$INCREMENT_TAG --preRelease="$GIT_BRANCH_CURRENT_NAME.$timestamp --dry-run"
 
   echo "Start to publish $LIB_NAME library to npm"
   ./scripts/build-and-publish-lib.sh $LIB_NAME --dry-run
