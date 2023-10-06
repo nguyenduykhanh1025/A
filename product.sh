@@ -6,6 +6,14 @@ GIT_BRANCH_CURRENT_NAME=$(git rev-parse --abbrev-ref HEAD | cut -d'/' -f 2)
 GIT_BRANCH_CURRENT_TYPE=$(git rev-parse --abbrev-ref HEAD | cut -d'/' -f 1)
 INCREMENT_TAG=minor
 GIT_BRANCH_CURRENT_TYPE_FEATURE=bugfix
+PUBLISHABLES_LIBS=('product' 'common-ui')
+LIB_NAME=$(npx nx print-affected --type=lib --select=projects --plain)
+echo "major.minor.patch"
+
+for PUBLISHABLES_LIB in ${PUBLISHABLES_LIBS[@]}
+do
+  if [[ "$LIB_NAME" == *"$PUBLISHABLES_LIB"* ]]; then
+    git checkout main
 
 if [[ "$AFFECTED_LIBS" == *"$LIB_NAME"* ]]; then
   # echo "Checkout to $MASTER_BASE before creating a new branch for changing the version of $LIB_NAME"
