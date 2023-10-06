@@ -10,7 +10,7 @@ MASTER_BASE=main
 
 AFFECTED_LIBS=$(npx nx print-affected --type=lib --select=projects --base=$MASTER_BASE --head=HEAD --plain)
 echo $LIB_NAME
-if [[ "$AFFECTED_LIBS" == *"$LIB_NAME"* ]]; then
+# if [[ "$AFFECTED_LIBS" == *"$LIB_NAME"* ]]; then
   echo "Checkout to $GIT_BRANCH_CURRENT before creating a new branch for changing the version of $LIB_NAME"
   git checkout $GIT_BRANCH_CURRENT
 
@@ -25,5 +25,5 @@ if [[ "$AFFECTED_LIBS" == *"$LIB_NAME"* ]]; then
   echo '----------------'
   echo $GIT_BRANCH_CURRENT_NAME
   npx nx release $LIB_NAME prepatch --preReleaseId="$GIT_BRANCH_CURRENT_NAME.$timestamp"
-fi
+# fi
 echo -e "✅ Done. ✅️"
