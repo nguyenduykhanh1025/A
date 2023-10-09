@@ -28,7 +28,7 @@ if $is_libs_changed; then
       read confirmed || true
       exec <&-
 
-      if $confirmed == "yes"; then
+      if $confirmed == "*yes*"; then
         echo -e "branchName=$branchName\nupdatedAt=$updatedAt" > ./versions/info-changed-libs.txt
         git add ./versions/info-changed-libs.txt
       else
