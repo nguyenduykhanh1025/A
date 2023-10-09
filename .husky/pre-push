@@ -22,7 +22,7 @@ done
 echo "---------------"
 echo $is_libs_changed
 
-echo -e "gitBranchCurrentName=$(git rev-parse --abbrev-ref HEAD)" > ../versions/branch-name-changed-libs.txt
+echo -e "gitBranchCurrentName=$(git rev-parse --abbrev-ref HEAD)" > ./versions/branch-name-changed-libs.txt
 
 if $is_libs_changed; then
   echo -e "gitBranchCurrentName=$(git rev-parse --abbrev-ref HEAD)" > ../versions/branch-name-changed-libs.txt
