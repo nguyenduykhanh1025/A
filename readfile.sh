@@ -7,7 +7,7 @@ if [ -f "$info_changed_libs" ]; then
     branchName=$(cat "$info_changed_libs" | grep "branchName" | cut -d'=' -f2 | xargs)
     updatedAt=$(cat "$info_changed_libs" | grep "updatedAt" | cut -d'=' -f2 | xargs)
 
-    preReleaseIdValue=$(echo "$branchName"  | sed 's/[-|/|~|^| |:]/_/g')'.'$(echo "$updatedAt"  | sed 's/[-|/|~|^| |:]/_/g')
+    preReleaseIdValue=$(echo "$branchName"  | sed 's/[-|/|~|^| |:]/_/g')'_'$(echo "$updatedAt"  | sed 's/[-|/|~|^| |:]/_/g')
 
     echo "Delete old dependencies update branch..."
     git push origin --delete "feature/auto-update-$LIB_NAME-version" || true
