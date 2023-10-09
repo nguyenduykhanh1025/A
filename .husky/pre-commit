@@ -23,12 +23,13 @@ done
 
 if $is_libs_changed; then
   if bash -c ": >/dev/tty" >/dev/null 2>/dev/null; then
+      yesStrComfirm="yes"
       printf "%b\n" "You have changed libs: $affected_libs. Do you want to publish to npm (yes/no)?"
       exec < /dev/tty
       read confirmed || true
       exec <&-
 
-      if $confirmed == "*yes*"; then
+      if $confirmed == "$yesStrComfirm"; then
         echo -e "branchName=$branchName\nupdatedAt=$updatedAt" > ./versions/info-changed-libs.txt
         git add ./versions/info-changed-libs.txt
       else
