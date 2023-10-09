@@ -1,2 +1,2 @@
-branchName=alo
-updatedAt=2023-10-09 10:50:21
+branchName=feature/DUBASDK-414-sdk-frontend-conception-for-npm-library-versioning-within-de-dehst-platform-libs
+updatedAt=2023-10-09 10:52:43
