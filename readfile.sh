@@ -1,27 +1,31 @@
-info_changed_libs=./versions/info-changed-libs.txt
+FILE_INFO_CHANGED_LIBS=./versions/info-changed-libs.txt
 LIB_NAME=common-ui
-versionSpecialSignalRegex="s/[-|/|~|^| |:]/./g"
+VERSION_SPECIAL_SIGNAL_REGEX='s/[-|/|~|^| |:]/./g'
+BRANCH_UPDATE_VERSION=feature/auto-update-$LIB_NAME-version
 
-echo "Check if '$info_changed_libs' exists"
-if [ -f "$info_changed_libs" ]; then
-    echo "'$info_changed_libs' exists."
-    branchName=$(cat "$info_changed_libs" | grep "branchName" | cut -d'=' -f2 | xargs)
-    updatedAt=$(cat "$info_changed_libs" | grep "updatedAt" | cut -d'=' -f2 | xargs)
+echo "Check if '$FILE_INFO_CHANGED_LIBS' exists"
+if [ -f "$FILE_INFO_CHANGED_LIBS" ]; then
+    echo "'$FILE_INFO_CHANGED_LIBS' exists."
 
-    preReleaseIdValue=$(echo "$branchName"  | sed $versionSpecialSignalRegex)'.'$(echo "$updatedAt"  | sed $versionSpecialSignalRegex)
+    branchName=$(cat "$FILE_INFO_CHANGED_LIBS" | grep "branchName" | cut -d'=' -f2 | xargs)
+    updatedAt=$(cat "$FILE_INFO_CHANGED_LIBS" | grep "updatedAt" | cut -d'=' -f2 | xargs)
+
+    branchNameFormatted=$(echo "$branchName"  | sed "$VERSION_SPECIAL_SIGNAL_REGEX")
+    updatedAt=$(echo "$updatedAt"  | sed "$VERSION_SPECIAL_SIGNAL_REGEX")
+
+    preReleaseIdValue=$branchNameFormatted'.'$updatedAt
+    echo "preReleaseId value: $preReleaseIdValue"
 
     echo "Delete old dependencies update branch..."
-    git push origin --delete "feature/auto-update-$LIB_NAME-version" || true
-    git branch -D "feature/auto-update-$LIB_NAME-version" || true
+    git push origin --delete $BRANCH_UPDATE_VERSION || true
+    git branch -D $BRANCH_UPDATE_VERSION || true
 
     echo "Create fresh update branch..."
-    git checkout -q -b "feature/auto-update-$LIB_NAME-version"
+    git checkout -q -b $BRANCH_UPDATE_VERSION
 
-    git push --set-upstream origin "feature/auto-update-$LIB_NAME-version"
+    git push --set-upstream origin $BRANCH_UPDATE_VERSION
 
     npx nx release $LIB_NAME prepatch --preReleaseId="$preReleaseIdValue"
-
-    echo $preReleaseTag
 else
-    echo "'$info_changed_libs' not existing."
+    echo "'$FILE_INFO_CHANGED_LIBS' not existing."
 fi
