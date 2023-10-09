@@ -6,11 +6,14 @@
         "versions/product-lib.json",
         "dist/libs/product/package.json"
       ]
+    },
+    "@csmith/release-it-calver-plugin": {
+      "format": "yyyy.mm.minor",
+      "increment": "calendar"
     }
   },
   "git": {
     "commitMessage": "chore(repo): release product ${version}",
-    "tagName": "product-v${version}",
     "requireCleanWorkingDir": false
   },
   "npm": {
