@@ -1,5 +1,5 @@
 PUBLISHABLES_LIBS=("product" "common-ui")
-$MASTER_BASE=main
+MASTER_BASE=main
 
 AFFECTED_LIBS=$(npx nx print-affected --type=lib --select=projects --base=$MASTER_BASE --head=HEAD --plain)
 

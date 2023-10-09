@@ -1,0 +1,23 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# get the current master, so we can calculate affected correctly
+echo "Fetching master form origin in local master."
+git fetch origin main:main
+
+master_base="main"
+is_libs_changed=false
+publishables_libs=("product" "common-ui")
+affected_projects=$(npx nx print-affected --type=lib --select=projects --base=$master_base --head=HEAD --plain)
+
+echo $affected_projects
+
+for publishables_lib in ${publishables_libs[@]}
+do
+  if [[ "$affected_projects" == *"$publishables_lib"* ]]; then
+    is_libs_changed=true
+  fi
+done
+
+echo "---------------"
+echo $is_libs_changed
