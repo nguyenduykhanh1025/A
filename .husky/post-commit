@@ -1,0 +1,33 @@
+# #!/bin/sh
+# . "$(dirname "$0")/_/husky.sh"
+
+# # get the current master, so we can calculate affected correctly
+# echo "Fetching master form origin in local master."
+# git fetch origin main:main
+
+# master_base="main"
+# is_libs_changed=false
+# publishables_libs=("product" "common-ui")
+# affected_libs=$(npx nx print-affected --type=lib --select=projects --base=$master_base --head=HEAD --plain)
+# updatedAt=$(date '+%Y-%m-%d %H:%M:%S')
+# branchName=$(git rev-parse --abbrev-ref HEAD)
+
+# echo $affected_libs
+
+# for publishables_lib in ${publishables_libs[@]}
+# do
+#   if [[ "$affected_libs" == *"$publishables_lib"* ]]; then
+#     is_libs_changed=true
+#   fi
+# done
+
+# echo '$updatedAt'
+# echo $updatedAt
+
+# if $is_libs_changed; then
+#   echo -e "branchName=$branchName\nupdatedAt=$updatedAt" > ./versions/info-changed-libs.txt
+
+#   git add ./versions/info-changed-libs.txt
+#   # git commit --amend --no-edit
+#   # git commit -m "Automated update of info-changed-libs files on $updatedAt"
+# fi
