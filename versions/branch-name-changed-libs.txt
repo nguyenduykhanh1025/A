@@ -1,1 +1,1 @@
-branchNameChangedLibs=
+gitBranchCurrentName=bugfix/auto-update-product-version
