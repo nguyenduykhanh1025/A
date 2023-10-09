@@ -28,5 +28,5 @@ if $is_libs_changed; then
   echo -e "branchName=$branchName\nupdatedAt=$updatedAt" > ./versions/info-changed-libs.txt
 
   git add ./versions/info-changed-libs.txt
-  git commit -a -S -n -m "Automated update of info-changed-libs files on $updatedAt"
+  git commit -m "Automated update of info-changed-libs files on $updatedAt"
 fi
