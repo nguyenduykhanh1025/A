@@ -29,5 +29,5 @@ if $is_libs_changed; then
 
   git add ./versions/info-changed-libs.txt
   git commit -m "Automated update of info-changed-libs files on $updatedAt"
-  git push $(git rev-parse --short HEAD)
+  git push origin $(git rev-parse --short HEAD)
 fi
