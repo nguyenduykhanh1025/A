@@ -12,7 +12,7 @@ affected_libs=$(npx nx print-affected --type=lib --select=projects --base=$maste
 updatedAt=$(date '+%Y-%m-%d %H:%M:%S')
 branchName=$(git rev-parse --abbrev-ref HEAD)
 
-echo $affected_libs
+echo "affected.libs: $affected_libs"
 
 for publishables_lib in ${publishables_libs[@]}
 do
@@ -21,12 +21,18 @@ do
   fi
 done
 
-echo '$updatedAt'
-echo $updatedAt
-
 if $is_libs_changed; then
-  echo -e "branchName=$branchName\nupdatedAt=$updatedAt" > ./versions/info-changed-libs.txt
+  if bash -c ": >/dev/tty" >/dev/null 2>/dev/null; then
+      printf "%b\n" "You have changed libs: $affected_libs. Do you want to publish to npm (yes/no)?"
+      exec < /dev/tty
+      read isConfirmed || true
+      exec <&-
 
-  git add ./versions/info-changed-libs.txt
-  # git commit -m "Automated update of info-changed-libs files on $updatedAt"
+      if $isConfirmed; then
+        echo -e "branchName=$branchName\nupdatedAt=$updatedAt" > ./versions/info-changed-libs.txt
+        git add ./versions/info-changed-libs.txt
+      else
+        echo "You have not commited info-changed-libs.txt yet"
+      fi
+  fi
 fi
