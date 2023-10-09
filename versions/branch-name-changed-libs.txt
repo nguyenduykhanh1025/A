@@ -1,1 +1,2 @@
-gitBranchCurrentName=bugfix/auto-update-product-version
+gitBranchCurrentName=
+timeChanged=
