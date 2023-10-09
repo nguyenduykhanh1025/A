@@ -1,2 +1,2 @@
 branchName=feature/DUBASDK-414-sdk-frontend-conception-for-npm-library-versioning-within-de-dehst-platform-libs
-updatedAt=2023-10-09 10:52:43
+updatedAt=2023-10-09 11:17:34
