@@ -1,5 +1,5 @@
 info_changed_libs=./versions/info-changed-libs.txt
-LIB_NAME=product
+LIB_NAME=common-ui
 
 echo "Check if '$info_changed_libs' exists"
 if [ -f "$info_changed_libs" ]; then

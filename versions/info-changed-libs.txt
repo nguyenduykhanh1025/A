@@ -1,2 +1,2 @@
-branchName=feature/auto-update-product-version
-updatedAt=2023-10-09 11:23:27
+branchName=feature/auto-update-common-ui-version
+updatedAt=2023-10-09 11:25:20
