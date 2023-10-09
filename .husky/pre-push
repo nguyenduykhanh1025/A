@@ -9,6 +9,8 @@ master_base="main"
 is_libs_changed=false
 publishables_libs=("product" "common-ui")
 affected_libs=$(npx nx print-affected --type=lib --select=projects --base=$master_base --head=HEAD --plain)
+updatedAt=$(date '+%Y-%m-%d %H:%M:%S')
+branchName=$(git rev-parse --abbrev-ref HEAD)
 
 echo $affected_libs
 
@@ -23,7 +25,7 @@ echo '$is_libs_changed'
 echo $is_libs_changed
 
 if $is_libs_changed; then
-  echo -e "gitBranchCurrentName=$(git rev-parse --abbrev-ref HEAD)\ntimestamp=$(date +%s)" > ./versions/branch-name-changed-libs.txt
-  git add ./versions/branch-name-changed-libs.txt
-  git commit -m "automali"
+  echo -e "branchName=$branchName\nupdatedAt=$updatedAt" > ./versions/branch-name-changed-libs.txt
+  git add ./versions/info-changed-libs.txt
+  git commit -m "Automated update of info-changed-libs files on $updatedAt"
 fi

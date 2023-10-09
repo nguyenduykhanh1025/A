@@ -1,2 +1,0 @@
-gitBranchCurrentName=test123
-timestamp=1696818944
