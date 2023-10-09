@@ -1,5 +1,6 @@
 info_changed_libs=./versions/info-changed-libs.txt
 LIB_NAME=common-ui
+versionSpecialSignalRegex="s/[-|/|~|^| |:]/./g"
 
 echo "Check if '$info_changed_libs' exists"
 if [ -f "$info_changed_libs" ]; then
@@ -7,8 +8,7 @@ if [ -f "$info_changed_libs" ]; then
     branchName=$(cat "$info_changed_libs" | grep "branchName" | cut -d'=' -f2 | xargs)
     updatedAt=$(cat "$info_changed_libs" | grep "updatedAt" | cut -d'=' -f2 | xargs)
 
-    # _'$(echo "$updatedAt"  | sed 's/[-|/|~|^| |:]/_/g')
-    preReleaseIdValue=$(echo "$branchName"  | sed 's/[-|/|~|^| |:]/./g')'.'$(echo "$updatedAt"  | sed 's/[-|/|~|^| |:]/./g')
+    preReleaseIdValue=$(echo "$branchName"  | sed $versionSpecialSignalRegex)'.'$(echo "$updatedAt"  | sed $versionSpecialSignalRegex)
 
     echo "Delete old dependencies update branch..."
     git push origin --delete "feature/auto-update-$LIB_NAME-version" || true
